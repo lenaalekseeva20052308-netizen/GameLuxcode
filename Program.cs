@@ -3,7 +3,7 @@
     internal class Program
     {
         static void Main(string[] args)
-        {
+        { 
             Console.WriteLine("Как звоут героя?");
             string name = Console.ReadLine();
 
@@ -20,6 +20,9 @@
             int gold = Convert.ToInt32(Console.ReadLine());
 
             int health = 100;
+
+            int stamina = 100;
+            int days = 0;
 
             Console.WriteLine($"Привет, {name}! Ты {classHero} в возрасте {age} лет. Сила: {strength}, Золото: {gold}, Здоровье = 100");
 
@@ -45,6 +48,29 @@
             }
 
             Console.WriteLine($"Твоё здоровье: {health}. Золото: {gold}");
+
+            while (stamina > 0 && days < 5)
+            {
+                Console.WriteLine($"День {days + 1}. Твоя выносливость, {name}: {stamina}");
+                Console.WriteLine("Нажми 1, чтобы найти воду, или любую другую клавишу, чтобы продолжить путь.");
+                string action = Console.ReadLine();
+
+                if (action == "1")
+                {
+                    stamina += 40;
+                    Console.WriteLine("ты нашел воду! Выносливость пополнилась!");
+                }
+
+                stamina -= 30;
+                days++;
+
+                if (stamina < 0) stamina = 0;
+
+                Console.WriteLine($"Выносливость после дня:{stamina}\n");
+            }
+
+            if (stamina <= 50) Console.WriteLine("Ты упал в обморок! Путешествие окончено...");
+            else Console.WriteLine("Ты пересек пустыню!");
         }
     }
 }
